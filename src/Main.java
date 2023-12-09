@@ -1,4 +1,3 @@
-import GUI.IDandPasswords;
 import GUI.LoginPage;
 
 public class Main {
