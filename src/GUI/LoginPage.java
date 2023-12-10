@@ -65,6 +65,7 @@ public class LoginPage implements ActionListener{
         creatButton.setForeground(new Color(108,77,56));
         creatButton.setBackground(new Color(222, 229, 236));
         creatButton.setFocusable(false);
+        creatButton.setBorder(null);
         creatButton.addActionListener(this);
 
         loginButton.setBounds(225,190,100,25);
@@ -125,7 +126,7 @@ public class LoginPage implements ActionListener{
             if(loginInfo.containsKey(userID)) {
                 if(loginInfo.get(userID).equals(password)) {
                     frame.dispose();
-                    MainGUI welcomePage = new MainGUI(userID);
+                    MainGUI welcomePage = new MainGUI();
                 }
                 else {
                     JOptionPane.showMessageDialog(null,"Wrong PassWord !!","Error",JOptionPane.ERROR_MESSAGE);
