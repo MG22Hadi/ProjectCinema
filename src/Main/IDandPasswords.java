@@ -1,3 +1,5 @@
+package Main;
+
 import java.util.HashMap;
 
 public class IDandPasswords {
@@ -7,9 +9,10 @@ public class IDandPasswords {
 
         logininfo.put("MG22", "abc");
         logininfo.put("Mohammed", "PASSWORD");
+
     }
 
-    protected HashMap getLoginInfo() {
+    public HashMap getLoginInfo() {
         return logininfo;
     }
 }

@@ -76,8 +76,7 @@ public class LoginPage implements ActionListener{
         
         CULabel.setForeground(new Color(108,77,56));
         CULabel.setBounds(100,5,200,10);
-//        CULabel.setVerticalAlignment(JLabel.TOP);
-        //CULabel.setHorizontalAlignment(JLabel.CENTER);
+//
        
         
 

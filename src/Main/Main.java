@@ -1,5 +1,6 @@
+package Main;
+
 import GUI.LoginPage;
-import GUI.MainGUI;
 
 public class Main {
 
@@ -9,6 +10,8 @@ public class Main {
 
         LoginPage loginPage = new LoginPage(idandPasswords.getLoginInfo());
 //        MainGUI mainGUI=new MainGUI();
+//        CreatAccountPage cap=new CreatAccountPage();
+
 
     }
 }
