@@ -1,5 +1,7 @@
 package GUI;
 
+import Classes.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -20,18 +22,14 @@ public class LoginPage implements ActionListener{
     JTextField userIDField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
     
-    JLabel userIDLabel = new JLabel("UserName:");
-    JLabel userPasswordLabel = new JLabel("password:");
+    JLabel userIDLabel = new JLabel("Email or Username :");
+    JLabel userPasswordLabel = new JLabel("Password:");
 
-    JButton loginButton = new JButton("Login");
-    JButton creatButton = new JButton("creat");
-
-    HashMap<String,String> loginInfo;
+    JButton loginButton = new JButton("login");
+    JButton creatButton = new JButton("Create");
 
 
-    public LoginPage(HashMap<String,String> loginInfoOriginal){
-
-        loginInfo = loginInfoOriginal;
+    public LoginPage(){
 
         logoLabel.setIcon(logo);
 
@@ -117,28 +115,30 @@ public class LoginPage implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource()==loginButton) {
+        if (e.getSource() == loginButton) {
 
             String userID = userIDField.getText();
             String password = String.valueOf(userPasswordField.getPassword());
 
-            if(loginInfo.containsKey(userID)) {
-                if(loginInfo.get(userID).equals(password)) {
+            for (User u : User.accounts) {
+                if (u.getEmail().equalsIgnoreCase(userID)) {
+                    if (u.getPassword().equalsIgnoreCase(password)) {
+                        frame.dispose();
+                        MainGUI welcomePage = new MainGUI();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Wrong Password !", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Username not founded !!", "Input Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+
+
+        }else if (e.getSource() == creatButton) {
                     frame.dispose();
-                    MainGUI welcomePage = new MainGUI();
+                    CreatAccountPage cap = new CreatAccountPage();
                 }
-                else {
-                    JOptionPane.showMessageDialog(null,"Wrong PassWord !!","Error",JOptionPane.ERROR_MESSAGE);
-                }
-
             }
-            else {
-                JOptionPane.showMessageDialog(null,"UserName not found !!","Error",JOptionPane.ERROR_MESSAGE);
-
-            }
-        }else if(e.getSource()==creatButton){
-            frame.dispose();
-            CreatAccountPage cap=new CreatAccountPage();
         }
-    }
-}

@@ -1,5 +1,6 @@
 package GUI;
 
+import Classes.User;
 import Main.IDandPasswords;
 
 import javax.swing.*;
@@ -160,9 +161,14 @@ public class CreatAccountPage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==backButton){
             frame.dispose();
-            IDandPasswords idandPasswords = new IDandPasswords();
+            LoginPage loginPage = new LoginPage();
+        } else if (e.getSource()==creatButton) {
+            User u = new User();
+            u.signup(text1.getText(),text2.getText(),text3.getText(),text4.getText(),genderLabel.getText());
 
-            LoginPage loginPage = new LoginPage(idandPasswords.getLoginInfo());
+             for(User s : User.accounts){
+                 System.out.println(s.getEmail());
+             }
         }
     }
 }
