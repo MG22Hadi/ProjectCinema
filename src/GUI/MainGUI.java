@@ -1,9 +1,14 @@
 package GUI;
 
+import Main.Movie;
+
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
-public class MainGUI {
+public class MainGUI implements MouseListener {
 
     JFrame frame = new JFrame();
     
@@ -11,10 +16,11 @@ public class MainGUI {
     JPanel iMoviesPanel =new JPanel();
     JPanel oMoviesPanel =new JPanel();
 
-    JPanel mo1 =new JPanel();
-    JLabel mL1=new JLabel();
-    JPanel mo2 =new JPanel();
-    JLabel mL2=new JLabel();
+
+    private static int x=0;
+    private static int y=0;
+    private static int countLabel=0;
+    JLabel m1,m2,m3,m4;
 
     JScrollPane sp=new JScrollPane(iMoviesPanel);
 
@@ -23,8 +29,6 @@ public class MainGUI {
 
 
     public MainGUI(){
-
-
         mainButton.setBounds(0,0,210,65);
         mainButton.setFocusable(false);
         mainButton.setBackground(new Color(222,229,236));
@@ -38,22 +42,9 @@ public class MainGUI {
         sittingButton.setForeground(new Color(108,77,56));
 
         iMoviesPanel.setPreferredSize(new Dimension(400,1000));
-        iMoviesPanel.setBounds(0,0,200,400);
         iMoviesPanel.setBackground(Color.GRAY);
         iMoviesPanel.setForeground(new Color(108,77,56));
         iMoviesPanel.setLayout(null);
-        iMoviesPanel.add(mo1);
-        iMoviesPanel.add(mo2);
-
-        mo1.setBounds(10,0,150,300);
-        mo1.setBackground(Color.GREEN);
-        mo1.setForeground(new Color(108,77,56));
-        mo1.setLayout(null);
-
-        mo2.setBounds(240,0,150,300);
-        mo2.setBackground(Color.GREEN);
-        mo2.setForeground(new Color(108,77,56));
-        mo2.setLayout(null);
 
         oMoviesPanel.setBounds(0,0,405,500);
         oMoviesPanel.setBackground(Color.RED);
@@ -79,5 +70,54 @@ public class MainGUI {
         frame.setSize(420, 600);
         frame.setLayout(null);
         frame.setVisible(true);
+
+        m1=addMovie("Inception",null,null,"Movis Photos/Inseption 0.jpg");
+        m2=addMovie("Shutter Island",null,null,"Movis Photos/Shutter i.jpg");
+        m3=addMovie("Inception",null,null,"Movis Photos/The body0.jpg");
+        m4=addMovie("Inception",null,null,"Movis Photos/The day After Tomorrow.jpg");
+
+    }
+
+    public JLabel addMovie(String name , ArrayList type,int []showTime,String path){
+        Movie newMovie= new Movie(name,type,showTime);
+        countLabel++;
+        if(countLabel%2==1){
+            x=0;
+        }else {
+            x=205;
+        }
+        if (countLabel%2==1 && countLabel>1)
+            y+=300;
+        JLabel l =new JLabel();
+        ImageIcon imageIcon=new ImageIcon(path);
+        l.setBounds(x,y,200,296);
+        l.setIcon(imageIcon);
+        l.setLayout(null);
+        l.addMouseListener(this);
+        iMoviesPanel.add(l);
+
+        return l;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource()==m1)
+            System.out.println(1);
+    }
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
